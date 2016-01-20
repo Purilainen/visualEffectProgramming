@@ -68,8 +68,8 @@ public:
 
 		float VertexColors[] = {
 			1.0f, 1.0f, 1.0f, 1.0f,
-			1.0f, 1.0f, 1.0f, 1.0f,
-			1.0f, 1.0f, 1.0f, 1.0f,
+			1.0f, 0.5f, 0.5f, 1.0f,
+			0.0f, 1.0f, 1.0f, 1.0f,
 			1.0f, 0.0f, 0.0f, 1.0f,
 		};
 
@@ -91,7 +91,7 @@ public:
 		m_material->bind();
 		checkOpenGL();
 
-		GLfloat time = m_count;
+		//GLfloat time = m_count;
 
 		m_material->getUniformLocations(m_shader);
 		//glUniform1f(glGetUniformLocation(m_shader->getProgram(), "time"), time);

@@ -9,5 +9,5 @@ uniform float totalTime;
 
 void main()
 {
-	gl_FragColor = g_vVSColor / (totalTime * 4);
+	gl_FragColor = g_vVSColor / totalTime;
 };
