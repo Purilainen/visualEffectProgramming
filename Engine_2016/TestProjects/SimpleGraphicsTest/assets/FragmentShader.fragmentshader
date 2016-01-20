@@ -1,0 +1,13 @@
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
+varying vec2 g_vTexCoord;
+varying   vec4 g_vVSColor;
+uniform float totalTime;
+
+void main()
+{
+	gl_FragColor = g_vVSColor / (totalTime * 4);
+};
