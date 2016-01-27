@@ -41,10 +41,14 @@ public:
 	virtual void update(graphics::ESContext* esContext, float deltaTime)
 	{
 		//m_count += deltaTime;
-		m_sharedValues.totalTime += deltaTime;
+		m_sharedValues.totalTime += deltaTime/2;
 
 		if (m_sharedValues.totalTime > 2.0f)
-			m_sharedValues.totalTime = 0.0f;
+		{
+			
+			m_sharedValues.totalTime = 0.0;
+		
+		}
 	}
 
 
@@ -70,7 +74,7 @@ public:
 			1.0f, 1.0f, 1.0f, 1.0f,
 			1.0f, 0.5f, 0.5f, 1.0f,
 			0.0f, 1.0f, 1.0f, 1.0f,
-			1.0f, 0.0f, 0.0f, 1.0f,
+			0.0f, 0.0f, 1.0f, 1.0f,
 		};
 
 		float TextCoords[] =
@@ -92,8 +96,7 @@ public:
 		checkOpenGL();
 
 		//GLfloat time = m_count;
-
-		m_material->getUniformLocations(m_shader);
+		//m_material->getUniformLocations(m_shader);
 		//glUniform1f(glGetUniformLocation(m_shader->getProgram(), "time"), time);
 
 
@@ -126,7 +129,6 @@ public:
 private:
 	float m_count;
 	core::Ref<graphics::Shader> m_shader;
-
 	SharedShaderValues m_sharedValues;
 	core::Ref<graphics::ShaderUniforms> m_material;
 
