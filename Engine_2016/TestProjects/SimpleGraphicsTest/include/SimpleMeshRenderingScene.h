@@ -118,6 +118,9 @@ public:
 		checkOpenGL();
 		
 		m_mesh->render();
+
+        glDisable(GL_CULL_FACE);
+        glDisable(GL_DEPTH_TEST);
 		checkOpenGL();
 	}
 
