@@ -84,6 +84,7 @@ public:
 			slmath::vec3(0.0f, 15.0f, 0.0f),
 			slmath::vec3(0.0f, 1.0f, 0.0f));
 
+        
 		//Update teapot model matrix
 		m_matModel = slmath::rotationX(-3.1415 * 0.5f); // 90 degrees around X-axis
 		m_matModel = slmath::rotationY(m_totalTime) * m_matModel; //Rotate according to total time
