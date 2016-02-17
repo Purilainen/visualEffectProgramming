@@ -11,11 +11,13 @@
 #include "FullScreenQuadShaderScene.h"
 #include "SimpleMeshRenderingScene.h"
 #include "BlinnPhongScene.h"
+#include "BlinnPhongSceneTextured.h"
+#include "CubeReflectionScene.h"
 
 
 // Current scene and max num of scenes
 core::Ref<Scene> m_currentScene = 0;
-static const int NUM_SCENES = 5;
+static const int NUM_SCENES = 7;
 static int sceneIndex = 0; // Current scene index.
 
 // Initialize engine globals (memory manager)
@@ -46,6 +48,8 @@ void changeCurrentScene(int index)
 	case 2: m_currentScene = new FullScreenQuadShaderScene(); break;
 	case 3: m_currentScene = new SimpleMeshRenderingScene(); break;
     case 4: m_currentScene = new BlinnPhongScene(); break;
+    case 5: m_currentScene = new BlinnPhongSceneTextured(); break;
+    case 6: m_currentScene = new CubeReflectionScene(); break;
 	default:
 		break;
 	}

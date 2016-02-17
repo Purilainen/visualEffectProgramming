@@ -2,6 +2,7 @@
 #define MYMATERIALS_H
 
 #include <graphics/Shader.h>
+#include <graphics/Texture.h>
 
 
 struct SharedShaderValues
@@ -58,9 +59,75 @@ private:
     GLint m_materialSpecularLoc;
 };
 
+class SimpleMaterialWithTextureUniforms : public SimpleMaterialUniforms
+{
+public:
+    core::Ref<graphics::Texture> diffuseMap;
 
+    SimpleMaterialWithTextureUniforms(graphics::Shader* shader, SharedShaderValues* sharedValues)
+        : SimpleMaterialUniforms(shader, sharedValues)
+    {
+    }
 
+    virtual ~SimpleMaterialWithTextureUniforms()
+    {
+    }
 
+    virtual void getUniformLocations(graphics::Shader* shader)
+    {
+        SimpleMaterialUniforms::getUniformLocations(shader);
+
+        m_diffuseMapLoc = glGetUniformLocation(shader->getProgram(), "s_diffuseMap");
+    }
+
+    virtual void bind(graphics::Shader* shader)
+    {
+        SimpleMaterialUniforms::bind(shader);
+
+        glActiveTexture(GL_TEXTURE0 + 0);
+        glBindTexture(GL_TEXTURE_2D, diffuseMap->getTextureId());
+
+        glUniform1i(m_diffuseMapLoc, 0);
+    }
+
+private:
+    GLint m_diffuseMapLoc;
+
+};
+
+class SimpleMaterialWithTextureUniformsCube : public SimpleMaterialWithTextureUniforms
+{
+public:
+    core::Ref<graphics::TextureCube> cubeMap;
+
+    SimpleMaterialWithTextureUniformsCube(graphics::Shader* shader, SharedShaderValues* sharedValues)
+        : SimpleMaterialWithTextureUniforms(shader, sharedValues)
+    {
+    }
+
+    virtual ~SimpleMaterialWithTextureUniformsCube()
+    {}
+
+    virtual void getUniformLocations(graphics::Shader* shader)
+    {
+        SimpleMaterialWithTextureUniforms::getUniformLocations(shader);
+
+        m_cubeMapLoc = glGetUniformLocation(shader->getProgram(),"s_cubeMap");
+    }
+
+    virtual void bind(graphics::Shader* shader)
+    {
+        SimpleMaterialWithTextureUniforms::bind(shader);
+
+        glActiveTexture(GL_TEXTURE0 + 1);
+        glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMap->getTextureId());
+
+        glUniform1i(m_cubeMapLoc, 1);
+    }
+
+private:
+    GLint m_cubeMapLoc;
+};
 
 
 

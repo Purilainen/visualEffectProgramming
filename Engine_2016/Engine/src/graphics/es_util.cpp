@@ -199,7 +199,7 @@ std::vector<unsigned short> readFile(const char* const fileName)
 	std::vector<unsigned short> res;
 	if (fp == NULL)
 	{
-		return res;
+		return res; 
 	}
 
 	int start = ftell(fp);
@@ -222,6 +222,7 @@ void engineAssert(const char* expression, const char* file, int line )
 	eastl::string s;
 	s.sprintf("Assertation failed at %s:%d: %s", file, line, expression );
 	LOG_ERROR(s.c_str());
+     DebugBreak();
 	throw std::exception(s.c_str());
 }
 
